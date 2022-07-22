@@ -84,5 +84,58 @@ public class livroDAO {
         }
     }
     
+    public livro getByDoc(int idLivro) throws SQLException{
+        Connection con = Conexao.getConexao();
+        Statement sta = con.createStatement();
+        
+        livro l = new livro();
+        
+        try {
+            String sql;
+            sql = "select * from livro where idlivro = " + idLivro;
+            ResultSet rs = sta.executeQuery(sql);
+            while (rs.next()){
+                l.setAssunto(rs.getString("Assunto"));
+                l.setAutor(rs.getString("Autor"));
+                l.setTitulo(rs.getString("Titulo"));
+                l.setIsbn(rs.getString("Isbn"));
+                l.setIdEditora(rs.getInt("IdEditora"));
+                l.setPreco(rs.getFloat("Preco"));
+               
+            }
+        } catch (Exception e) {
+            throw new SQLException("Erro ao encontrar livro!" + e.getMessage());
+        } finally {
+            con.close();
+            sta.close();
+        } return l;
+        
+        
+            
+    }
+    
+    public void atualizarEstoque(int idLivro, int venda, int devolucao) throws SQLException{
+       Connection con = Conexao.getConexao();
+        Statement sta = con.createStatement();
+        
+        
+        livro l = this.getByDoc(idLivro);
+        int estoqueAtual = l.getEstoque();
+        int estoqueNovo = estoqueAtual - venda + devolucao;
+        
+        try {
+            String sql;
+            sql = "update livro set"
+                    + "estoque = " + estoqueNovo + " where idLivro = " + idLivro;
+            sta.executeQuery(sql);
+        } catch (Exception e) {
+            throw new SQLException("Erro ao atualizar!" + e.getMessage());
+        } finally {
+            con.close();
+            sta.close();
+        }
+        
+        
+    }
     
 }

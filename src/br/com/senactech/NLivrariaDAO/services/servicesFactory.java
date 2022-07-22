@@ -16,5 +16,12 @@ public class servicesFactory {
         return ClienteServices;
     }
     
+    private static editoraServices EditoraServices = new editoraServices();
+    
+    public static editoraServices geteditoraServices(){
+        return EditoraServices;
+    }
+    
+    
     
 }
