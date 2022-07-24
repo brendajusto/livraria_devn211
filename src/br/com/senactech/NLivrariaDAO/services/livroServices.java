@@ -29,4 +29,9 @@ public class livroServices {
         livroDAO lDAO = DaoFactory.getlivroDAO();
         lDAO.deletarLivro(id);
     }
+    
+    public void atuaEstoqueBD(int idLivro, int venda, int devolucao) throws SQLException{
+        livroDAO lDAO = DaoFactory.getlivroDAO();
+        lDAO.atualizarEstoque(idLivro, venda, devolucao);
+    }
 }

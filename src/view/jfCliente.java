@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static tlivrariaoojf.TLivrariaOOJF.cadClientes;
+import validaCPF.validaCPF;
 
 /**
  *
@@ -287,6 +288,44 @@ public class jfCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jbSalvarActionPerformed
 
+     public boolean validaInputs(){
+         String telefone = jtfTelefone.getText();
+        if (jtfNomeCliente.getText().isBlank()
+                || jtfCpfCnpj.getText().isBlank()
+                || jtfEndereco.getText().isBlank()
+                || jtfTelefone.getText().isBlank()) {
+            JOptionPane.showMessageDialog(this,
+                    "Todos os campos devem ser preenchidos!",
+                    ".: Erro :.", JOptionPane.ERROR_MESSAGE);
+            jtfNomeCliente.requestFocus();
+            return false;
+        }
+        if (telefone.length() != 10 && telefone.length() != 11) {
+            JOptionPane.showMessageDialog(this,
+                    "Telefone informado esta incorreto",
+                    ".: Erro :.", JOptionPane.ERROR_MESSAGE);
+            jtfTelefone.requestFocus();
+            return false;
+        }
+       
+        if (jbSalvar.getText() == "Salvar") {
+            if (!validaCPF.isCPF(jtfCpfCnpj.getText())) {
+                JOptionPane.showMessageDialog(this,
+                        "CPF informado esta incorreto!!!",
+                        ".: Erro :.", JOptionPane.ERROR_MESSAGE);
+                jtfCpfCnpj.requestFocus();
+                return false;
+            } else if (cadClientes.equals(jtfCpfCnpj.getText())) {
+                JOptionPane.showMessageDialog(this,
+                        "CPF já cadastrado!!!",
+                        ".: Erro :.", JOptionPane.ERROR_MESSAGE);
+                jtfCpfCnpj.requestFocus();
+                return false;
+            }
+        }
+        return true;
+     }
+             
     /**
      * @param args the command line arguments
      */

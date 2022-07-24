@@ -5,6 +5,8 @@
 package view;
 import br.com.senactech.NLivrariaDAO.livrariaDAO.livroDAO;
 import br.com.senactech.NLivrariaDAO.livrariaDAO.vendaLivroDAO;
+import br.com.senactech.NLivrariaDAO.services.livroServices;
+
 
 /**
  *
@@ -17,6 +19,7 @@ public class jfVenda extends javax.swing.JPanel {
      */
     public jfVenda() {
         initComponents();
+        
     }
 
     /**
@@ -75,8 +78,8 @@ public class jfVenda extends javax.swing.JPanel {
                         .addComponent(jlidlivro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jppainelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jltexto)
-                            .addComponent(jtfidlivro, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtfidlivro, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jltexto, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jppainelLayout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addComponent(jbatualizar)))
@@ -117,7 +120,7 @@ public class jfVenda extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbatualizarActionPerformed
-        atualizarEstoque();
+       atuaEstoqueBD();
     }//GEN-LAST:event_jbatualizarActionPerformed
 
 
@@ -132,4 +135,8 @@ public class jfVenda extends javax.swing.JPanel {
     private javax.swing.JTextField jtfidlivro;
     private javax.swing.JTextField jtfqtdvendas;
     // End of variables declaration//GEN-END:variables
+
+    private void atuaEstoqueBD() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
